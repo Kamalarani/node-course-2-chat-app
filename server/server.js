@@ -19,9 +19,10 @@ var io = socketIO(server);
 
    socket.broadcast.emit("newMessage",generateMessage("Admin", "New user connected"));
 
-   socket.on("createMessage", (message) => {
+   socket.on("createMessage", (message,callback) => {
      console.log("createMessage",message);
      io.emit('newMessage',generateMessage(message.from,message.text));
+     callback(" OK FINE");
    });
 
    socket.on("disconnect" ,() => {
